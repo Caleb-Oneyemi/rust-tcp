@@ -12,6 +12,12 @@ cd into project:
 $ cd rust-tcp
 ```
 
+create .env file:
+
+```shell
+$ echo SERVER_ADDRESS=127.0.0.1:{PORT} > .env
+```
+
 run server:
 
 ```shell

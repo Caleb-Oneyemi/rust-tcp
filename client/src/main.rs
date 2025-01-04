@@ -10,6 +10,7 @@ use std::{
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 struct Args {
+    #[arg(short, long)]
     name: String,
 }
 
@@ -23,11 +24,20 @@ fn main() {
     if let Ok(mut stream) = TcpStream::connect(addr) {
         println!("Connected to tcp server...");
 
+        const SIZE: usize = 1018;
+        if args.name.len() > SIZE {
+            panic!(
+                "input size of {:?} exceed maximum size {:?}",
+                args.name.len(),
+                SIZE
+            );
+        }
+
         let msg = format!("Hello {}", args.name);
 
         stream.write(msg.as_bytes()).unwrap();
 
-        let mut buffer = [0; 1024];
+        let mut buffer = [0; SIZE];
 
         stream.read(&mut buffer).unwrap();
 

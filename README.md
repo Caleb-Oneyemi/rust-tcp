@@ -27,5 +27,5 @@ $ cargo run -p server
 run client:
 
 ```shell
-$ cargo run -p client input
+$ cargo run -p client -- --name User
 ```

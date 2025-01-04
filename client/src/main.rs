@@ -37,7 +37,7 @@ fn main() {
 
         stream.write(msg.as_bytes()).unwrap();
 
-        let mut buffer = [0; SIZE];
+        let mut buffer = [0; 1024];
 
         stream.read(&mut buffer).unwrap();
 
